@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  padding: 0.5em 0.5em 0.5em;
+  color: black;
+}
+input {
+  width: 100%;
+  padding: 0.5em 0.5em 0.5em;
+  margin: 0.5em 0.5em;
+  border-radius: 0.5em;
+  border: 1px solid #09f880;
+  box-sizing: border-box;
+  color: gray;
+}
+.error {
+  color: red;
+}
+
+button {
+  width: 4rem;
+  padding: 0.5em 0.5em 0.5em;
+  background-color: #09f880;
+  color: white;
+}
