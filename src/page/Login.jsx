@@ -10,6 +10,7 @@ export default function Login() {
     formState: { errors },
   } = useForm()
   const navigate = useNavigate()
+
   const onSubmit = (data) => {
     const storedUser = JSON.parse(localStorage.getItem('user'))
 
@@ -26,6 +27,7 @@ export default function Login() {
       alert('등록된 사용자가 없습니다.')
     }
   }
+
   return (
     <div>
       <header>
@@ -44,7 +46,9 @@ export default function Login() {
               },
             })}
           />
-          {errors.email && <p className="error">{errors.email.message}</p>}
+          {errors.email && (
+            <p className="error">{errors.email.message?.toString()}</p>
+          )}
           <input
             type="password"
             placeholder="Password"
@@ -59,11 +63,17 @@ export default function Login() {
             })}
           />
           {errors.password && (
-            <p className="error">{errors.password.message}</p>
+            <p className="error">{errors.password.message?.toString()}</p>
           )}
 
-          <button type="submit">Login</button>
-          <button type="button" onClick={navigate('/Signup')}>
+          <button type="submit" className="buttonLogin">
+            Login
+          </button>
+          <button
+            type="button"
+            className="buttonSignup"
+            onClick={() => navigate('/signup')}
+          >
             Signup
           </button>
         </form>
