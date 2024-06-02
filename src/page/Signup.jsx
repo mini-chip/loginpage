@@ -12,39 +12,51 @@ export default function Signup() {
   const navigate = useNavigate()
 
   const onSubmit = (data) => {
-    localStorage.setItem('user', JSON.stringify(data))
-    alert('회원가입 성공')
-    navigate('/')
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || []
+    const userExists = storedUsers.some((user) => user.email === data.email)
+
+    if (userExists) {
+      alert('이미 등록된 이메일입니다.')
+    } else {
+      storedUsers.push(data)
+      localStorage.setItem('users', JSON.stringify(storedUsers))
+      alert('회원가입 성공')
+      navigate('/')
+    }
   }
 
   return (
     <div>
       <header>
-        <h1>Signup</h1>
+        <h1>회원가입</h1>
       </header>
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="email"
-            placeholder="test@test.com"
+            placeholder="이메일을 입력하세요"
             {...register('email', {
-              required: true,
+              required: '이메일을 입력하세요.',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: '이메일 형식으로 입력하세요.',
               },
             })}
           />
-          {errors.email && (
-            <p className="error">{errors.email.message?.toString()}</p>
-          )}
+          {errors.email && <p className="error">{errors.email.message}</p>}
           <input
             type="password"
-            placeholder="패스워드를 입력하세요."
+            placeholder="비밀번호를 입력하세요"
             {...register('password', {
-              required: true,
-              minLength: 4,
-              maxLength: 4,
+              required: '비밀번호를 입력하세요.',
+              minLength: {
+                value: 4,
+                message: '비밀번호는 4자리여야 합니다.',
+              },
+              maxLength: {
+                value: 4,
+                message: '비밀번호는 4자리여야 합니다.',
+              },
               pattern: {
                 value: /^[0-9]*$/,
                 message: '숫자 1~9까지 4자리 숫자를 입력하세요',
@@ -52,17 +64,17 @@ export default function Signup() {
             })}
           />
           {errors.password && (
-            <p className="error">{errors.password.message?.toString()}</p>
+            <p className="error">{errors.password.message}</p>
           )}
           <button type="submit" className="buttonSignup">
-            Signup
+            회원가입
           </button>
           <button
             type="button"
             className="buttonLogin"
             onClick={() => navigate('/')}
           >
-            Login
+            로그인
           </button>
         </form>
       </div>
