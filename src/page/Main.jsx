@@ -26,10 +26,14 @@ export default function Main() {
         {loggedInUser ? (
           <div>
             <span>{loggedInUser}님 환영합니다!</span>
-            <button onClick={handleLogout}>로그아웃</button>
+            <button className={'buttonLogout'} onClick={handleLogout}>
+              로그아웃
+            </button>
           </div>
         ) : (
-          <button onClick={() => navigate('/')}>로그인</button>
+          <button className={'buttonLogin'} onClick={() => navigate('/')}>
+            로그인
+          </button>
         )}
       </header>
       <h1>메인 페이지</h1>

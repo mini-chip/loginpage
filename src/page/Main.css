@@ -1,0 +1,12 @@
+.buttonLogout {
+  width: 4rem;
+  padding: 0.5em 0.5em 0.5em;
+  background-color: #09f880;
+  color: white;
+}
+.buttonLogin {
+  width: 4rem;
+  padding: 0.5em 0.5em 0.5em;
+  background-color: #9debb7;
+  color: white;
+}
