@@ -12,14 +12,15 @@ export default function Login() {
   const navigate = useNavigate()
 
   const onSubmit = (data) => {
-    const storedUsers = JSON.parse(localStorage.getItem('users')) || []
+    const storedUsers = JSON.parse(localStorage.getItem('users')) //delay
+    console.log(storedUsers)
     const user = storedUsers.find(
       (user) => user.email === data.email && user.password === data.password
     )
-
+    console.log('Found User:', user)
     if (user) {
       alert('로그인 성공')
-      localStorage.setItem('loggedInUserId', user.id)
+      localStorage.setItem('loggedInUserId', user.email)
       navigate('/main')
     } else {
       alert('이메일 또는 비밀번호가 일치하지 않습니다.')
